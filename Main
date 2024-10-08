@@ -1,0 +1,64 @@
+import java.util.Random;
+
+public class Main {
+    public Main() {
+    }
+
+    public static void main(String[] args) {
+        int starting = 1;
+        int ending = 70;
+        int tortoise = starting;
+        int hare = starting;
+        Random random = new Random();
+
+        while(tortoise < ending && hare < ending) {
+            int randomTortoise = random.nextInt(10);
+            int randomHare = random.nextInt(10);
+            if (randomHare <= 5) {
+                hare += 3;
+            } else if (randomHare <= 7) {
+                hare -= 6;
+            } else {
+                ++hare;
+            }
+
+            if (hare < starting) {
+                hare = starting;
+            }
+
+            if (randomTortoise <= 2) {
+                tortoise += 0;
+            } else if (randomTortoise <= 4) {
+                tortoise += 9;
+            } else if (randomTortoise <= 5) {
+                ++tortoise;
+            } else {
+                tortoise -= 2;
+            }
+
+            if (tortoise < starting) {
+                tortoise = starting;
+            }
+
+            System.out.println("Tortoise is now at position " + tortoise);
+            System.out.println("Hare is now at position " + hare);
+            System.out.println();
+
+            try {
+                Thread.sleep(300L);
+            } catch (InterruptedException var9) {
+                InterruptedException e = var9;
+                e.printStackTrace();
+            }
+        }
+
+        if (tortoise >= ending) {
+            System.out.println("Tortoise wins!");
+            System.out.println("Hare is left behind with " + (70 - hare) + " tiles.");
+        } else {
+            System.out.println("Hare wins!");
+            System.out.println("Tortoise is left behind with " + (70 - tortoise) + " tiles.");
+        }
+
+    }
+}
